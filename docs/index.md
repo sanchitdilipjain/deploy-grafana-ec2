@@ -1,37 +1,99 @@
-## Welcome to GitHub Pages
+## Install Grafana
 
-You can use the [editor on GitHub](https://github.com/sanchitdilipjain/install-grafana-ec2/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+**Introduction**
+<br>Grafana is an open source software that is reowned in creating graphs and visualizations for end users to articulate the time-series data. In this tutorial, we will focus on following steps and it will carry out on an EC2 Instance with Amazon Linux 2 as the operating system
+- Provisioning Ec2 server
+- Installation of Grafana
+- Testing the setup
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Step 1 - Provisioning Ec2 server
+  
+  - Launch an Amazon Linux 2 AMI EC2 Instance with below configuration
+  
+       - AWS AMI for Ec2 
+       
+       <img src="image/image.png" class="inline"/>
+       
+       - Security Group for Ec2 
+       
+       <img src="image/image2.png" class="inline"/>
+       
+       *Note: Avoid opening port to anywhere i.e. 0.0.0.0/0*
+       
+       - Storage & Tags for Ec2 
+       
+       <img src="image/image3.png" class="inline"/>
+       
+       - Let's verify if Ec2 is deployed successfully 
+       
+       <img src="image/image4.png" class="inline"/>
+       
 
-### Markdown
+Step 2 - Installation of Grafana
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+   - SSH into your Ec2 instance  
+    
+    ssh -i "<pemfile_name>" ec2-user@publicdns_of_ec2
+    
+   <img src="image/image5.png" class="inline"/>
+   
+   - Now let's update all installed packages in the Ec2 instance
+   
+    sudo yum update -y
+    
+   - Now we will add a new entry in YUM respository to download Grafana
 
-```markdown
-Syntax highlighted code block
+    sudo vi /etc/yum.repos.d/grafana.repo
+   
+   - Copy below lines and paste as is in the grafana.repo
+   
+    [grafana]
+    name=grafana
+    baseurl=https://packages.grafana.com/oss/rpm
+    repo_gpgcheck=1
+    enabled=1
+    gpgcheck=1
+    gpgkey=https://packages.grafana.com/gpg.key
+    sslverify=1
+    sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+    
+   - Finally we are ready to install Grafana
+   
+    sudo yum install grafana -y
+    
+   - Reload the systemd to load the new settings. Start Grafana Server, then check for its status
+   
+    sudo systemctl daemon-reload
+    
+   - Start the Grafana Server
 
-# Header 1
-## Header 2
-### Header 3
+    sudo systemctl start grafana-server
+    
+   - Check the status of Grafana Server
 
-- Bulleted
-- List
+    sudo systemctl status grafana-server
+  
+   <img src="image/image6.png" class="inline"/>
+   
+   - Run the command below to make sure that Grafana will start upon booting our Amazon Linux 2 instance
+   
+    sudo systemctl enable grafana-server.service
 
-1. Numbered
-2. List
 
-**Bold** and _Italic_ and `Code` text
+Step 3 - Testing the setup
 
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/sanchitdilipjain/install-grafana-ec2/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+   - Let's retrieve the Public DNS of Ec2 instance on port 3000 in the browser and it will redirect you to login screen of Grafana
+   
+   <img src="image/image7.png" class="inline"/>
+   
+   - Default username & password will be admin and on first login Grafana will requires to change the admin password 
+   
+   <img src="image/image8.png" class="inline"/>
+   
+   - Now you will move to the default Welcome Grafana page and here we can now add Data Sources, Dashboards, Users or Explore plugins and many more
+   
+   <img src="image/image9.png" class="inline"/>
+   
+   - We have now succesfully installed Grafana on EC2 Instance running in Amazon Linux 2
+   
+   <img src="image/image10.png" class="inline"/>
