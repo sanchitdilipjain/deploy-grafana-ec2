@@ -18,6 +18,10 @@ Step 1 - Provisioning Ec2 server
        
        <img src="image/image2.png" class="inline"/>
        
+       - IAM policy for Ec2 
+       
+       <img src="image/image11.png" class="inline"/>
+       
        *Note: Avoid opening port to anywhere i.e. 0.0.0.0/0*
        
        - Storage & Tags for Ec2 
@@ -97,3 +101,33 @@ Step 3 - Testing the setup
    - We have now succesfully installed Grafana on EC2 Instance running in Amazon Linux 2
    
    <img src="image/image10.png" class="inline"/>
+   
+Step 4 - Adding CloudWatch as a Data Source in the Grafana
+
+   - Click on Configuration >> Data Sources
+   
+   <img src="image/image12.png" class="inline"/>
+
+   - Click on Add data source.
+   
+   <img src="image/image13.png" class="inline"/>
+   
+   - Search for CloudWatch and click Select
+   
+   <img src="image/image14.png" class="inline"/>
+   
+   - Under CloudWatch settings, add Name and Default Region. Then click Save & Test.
+   
+   <img src="image/image15.png" class="inline"/>
+   
+   *Note: You can also use the following Auth Provider to access CloudWatch via IAM Role.*
+   
+   <img src="image/image16.png" class="inline"/>
+   
+Step 5 - Testing CloudWatch Data Source
+    
+   - Let's create a new dashboard with Cloudwatch as a source
+   
+   <img src="image/image17.png" class="inline"/>
+   
+   - Green spike on the Graph that mean Grafana Server is able to successfully access CloudWatch via the attached IAM Role of the EC2 Instance.
