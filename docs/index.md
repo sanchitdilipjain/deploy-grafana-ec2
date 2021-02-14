@@ -90,7 +90,7 @@ Step 3 - Testing the setup
    
    <img src="image/image8.png" class="inline"/>
    
-   - Now you will move to the default Welcome Grafana page and here we can now add Data Sources, Dashboards, Users or Explore plugins and many more
+   - Now you will move to the default Welcome Grafana page and here we can add Data Sources, Dashboards, Users or Explore plugins and many more
    
    <img src="image/image9.png" class="inline"/>
    
