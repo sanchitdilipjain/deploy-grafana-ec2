@@ -1,1 +1,1 @@
-# install-grafana-ec2
+# deploy-grafana-ec2
