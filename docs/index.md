@@ -1,14 +1,16 @@
 ## Install Grafana
 
 **Introduction**
-<br>Grafana is an open source software that is reowned in creating graphs and visualizations for end users to articulate the time-series data. In this tutorial, we will focus on following steps and it will carry out on an EC2 Instance with Amazon Linux 2 as the operating system
+<br>Grafana is open-source software famous for creating graphs and visualizations for end-users to articulate the time-series data. In this tutorial, we will focus on the following steps and it will carry out on an EC2 Instance with Amazon Linux 2 as the operating system
 - Provisioning Ec2 server
 - Installation of Grafana
 - Testing the setup
+- Adding Data Source in the Grafana
+- Testing CloudWatch as a Data Source
 
-Step 1 - Provisioning Ec2 server
+**Step 1 - Provisioning Ec2 server**
   
-  - Launch an Amazon Linux 2 AMI EC2 Instance with below configuration
+  - Launch an Amazon Linux 2 AMI EC2 Instance with the below configuration
   
        - AWS AMI for Ec2 
        
@@ -33,7 +35,7 @@ Step 1 - Provisioning Ec2 server
        <img src="image/image4.png" class="inline"/>
        
 
-Step 2 - Installation of Grafana
+**Step 2 - Installation of Grafana**
 
    - SSH into your Ec2 instance  
     
@@ -45,11 +47,11 @@ Step 2 - Installation of Grafana
    
     sudo yum update -y
     
-   - Now we will add a new entry in YUM respository to download Grafana
+   - Now we will add a new entry in the YUM repository to download Grafana
 
     sudo vi /etc/yum.repos.d/grafana.repo
    
-   - Copy below lines and paste as is in the grafana.repo
+   - Copy the below lines and paste as is in the grafana.repo
    
     [grafana]
     name=grafana
@@ -61,7 +63,7 @@ Step 2 - Installation of Grafana
     sslverify=1
     sslcacert=/etc/pki/tls/certs/ca-bundle.crt
     
-   - Finally we are ready to install Grafana
+   - Finally, we are ready to install Grafana
    
     sudo yum install grafana -y
     
@@ -84,13 +86,13 @@ Step 2 - Installation of Grafana
     sudo systemctl enable grafana-server.service
 
 
-Step 3 - Testing the setup
+**Step 3 - Testing the setup**
 
-   - Let's retrieve the Public DNS of Ec2 instance on port 3000 in the browser and it will redirect you to login screen of Grafana
+   - Let's retrieve the Public DNS of Ec2 instance on port 3000 in the browser and it will redirect you to the login screen of Grafana
    
    <img src="image/image7.png" class="inline"/>
    
-   - Default username & password will be admin and on first login Grafana will requires to change the admin password 
+   - Default username & password will be admin and on the first login, Grafana will require to change the admin password 
    
    <img src="image/image8.png" class="inline"/>
    
@@ -98,11 +100,11 @@ Step 3 - Testing the setup
    
    <img src="image/image9.png" class="inline"/>
    
-   - We have now succesfully installed Grafana on EC2 Instance running in Amazon Linux 2
+   - We have now successfully installed Grafana on EC2 Instance running in Amazon Linux 2
    
    <img src="image/image10.png" class="inline"/>
    
-Step 4 - Adding CloudWatch as a Data Source in the Grafana
+**Step 4 - Adding Data Source in the Grafana**
 
    - Click on Configuration >> Data Sources
    
@@ -124,10 +126,10 @@ Step 4 - Adding CloudWatch as a Data Source in the Grafana
    
    <img src="image/image16.png" class="inline"/>
    
-Step 5 - Testing CloudWatch Data Source
+**Step 5 - Testing CloudWatch as a Data Source**
     
    - Let's create a new dashboard with Cloudwatch as a source
    
    <img src="image/image17.png" class="inline"/>
    
-   - Green spike on the Graph that mean Grafana Server is able to successfully access CloudWatch via the attached IAM Role of the EC2 Instance.
+   - Green spike on the Graph means Grafana Server can successfully access CloudWatch via the attached IAM Role of the EC2 Instance.
