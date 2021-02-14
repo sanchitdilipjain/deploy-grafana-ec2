@@ -20,11 +20,11 @@
        
        <img src="image/image2.png" class="inline"/>
        
+       *Note: Avoid opening port to anywhere i.e. 0.0.0.0/0*
+       
        - IAM policy for Ec2 
        
        <img src="image/image11.png" class="inline"/>
-       
-       *Note: Avoid opening port to anywhere i.e. 0.0.0.0/0*
        
        - Storage & Tags for Ec2 
        
@@ -88,7 +88,7 @@
 
 **Step 3 - Testing the setup**
 
-   - Let's retrieve the Public DNS of Ec2 instance on port 3000 in the browser and it will redirect you to the login screen of Grafana
+   - Enter the Public DNS of Ec2 instance with port 3000 in the browser and it will redirect you to the login screen of Grafana
    
    <img src="image/image7.png" class="inline"/>
    
