@@ -1,4 +1,4 @@
-## Install Grafana
+## Deploy Grafana
 
 **Introduction**
 <br>Grafana is open-source software famous for creating graphs and visualizations for end-users to articulate the time-series data. In this tutorial, we will focus on the following steps and it will carry out on an EC2 Instance with Amazon Linux 2 as the operating system
