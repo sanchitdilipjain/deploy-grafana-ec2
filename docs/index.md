@@ -51,7 +51,7 @@
 
     sudo vi /etc/yum.repos.d/grafana.repo
    
-   - Copy the below lines and paste as is in the grafana.repo
+   - Copy the below lines and paste them as is in the grafana.repo
    
     [grafana]
     name=grafana
